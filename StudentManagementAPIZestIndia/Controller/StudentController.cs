@@ -19,4 +19,11 @@ public class StudentController : ControllerBase
 
         return StatusCode(201, $"Student is created with id - {student.Id}");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllStudents()
+    {
+        var students = await studentServiceI.GetAllStudents();
+        return Ok(students);
+    }
 }

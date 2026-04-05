@@ -1,4 +1,5 @@
 
+
 public class StudentService : StudentServiceI
 {
     private readonly StudentRepositoryI studentRepositoryI;
@@ -31,5 +32,17 @@ public class StudentService : StudentServiceI
         }
 
         return addedStudent;
+    }
+    
+    public async Task<List<Student>> GetAllStudents()
+    {
+        List<Student> students = await studentRepositoryI.GetAllStudents();
+        
+        if(students == null)
+        {
+            throw new DatabaseException("Failed to retrieve students.");
+        }
+
+        return students;
     }
 }

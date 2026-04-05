@@ -149,3 +149,4 @@ E:\Zest\student-management-system-zest\StudentManagementAPIZestIndia\bin\Debug\n
 E:\Zest\student-management-system-zest\StudentManagementAPIZestIndia\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 E:\Zest\student-management-system-zest\StudentManagementAPIZestIndia\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\Zest\student-management-system-zest\StudentManagementAPIZestIndia\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+E:\Zest\student-management-system-zest\StudentManagementAPIZestIndia\obj\Debug\net9.0\StudentManagementAPIZestIndia.sourcelink.json

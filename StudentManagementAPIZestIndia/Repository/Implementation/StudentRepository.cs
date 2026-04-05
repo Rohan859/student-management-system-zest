@@ -1,4 +1,7 @@
 
+
+using System.Linq;
+
 public class StudentRepository : StudentRepositoryI
 {
     private readonly AppDbContext _context;
@@ -12,5 +15,10 @@ public class StudentRepository : StudentRepositoryI
         await _context.Students.AddAsync(student);
         await _context.SaveChangesAsync();
         return student;
+    }
+
+    public async Task<List<Student>> GetAllStudents()
+    {
+        return _context.Students.ToList();
     }
 }

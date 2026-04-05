@@ -1,0 +1,6 @@
+@StudentManagementAPIZestIndia_HostAddress = http://localhost:5252
+
+GET {{StudentManagementAPIZestIndia_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

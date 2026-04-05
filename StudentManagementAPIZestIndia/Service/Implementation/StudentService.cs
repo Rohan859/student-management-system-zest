@@ -3,10 +3,12 @@
 public class StudentService : StudentServiceI
 {
     private readonly StudentRepositoryI studentRepositoryI;
+    private readonly ILogger<StudentService> _logger;
 
-    public StudentService(StudentRepositoryI studentRepositoryI)
+    public StudentService(StudentRepositoryI studentRepositoryI, ILogger<StudentService> logger)
     {
         this.studentRepositoryI = studentRepositoryI;
+        this._logger = logger;
     }
 
     public async Task<Student> AddNewStudent(StudentRequestDTO studentRequestDTO)
@@ -28,6 +30,7 @@ public class StudentService : StudentServiceI
 
         if (addedStudent == null)
         {
+            _logger.LogError($"Failed to add new student with id {student.Id} and email {student.Email} to the database.");
             throw new DatabaseException("Failed to add new student.");
         }
 
@@ -40,6 +43,7 @@ public class StudentService : StudentServiceI
         
         if(students == null)
         {
+            _logger.LogError("Failed to retrieve students from the database.");
             throw new DatabaseException("Failed to retrieve students.");
         }
 
@@ -69,6 +73,7 @@ public class StudentService : StudentServiceI
 
         if(!isDeleted)
         {
+            _logger.LogError($"Failed to delete student with id {id} from the database because it was not found.");
             throw new KeyNotFoundException($"Student with id {id} not found.");
         }
 

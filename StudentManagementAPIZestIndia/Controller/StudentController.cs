@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 public class StudentController : ControllerBase
 {
     private readonly StudentServiceI studentServiceI;
+    private readonly ILogger<StudentController> logger;
 
-    public StudentController(StudentServiceI studentServiceI)
+    public StudentController(StudentServiceI studentServiceI, ILogger<StudentController> logger)
     {
         this.studentServiceI = studentServiceI;
+        this.logger = logger;
     }
 
     [HttpPost]
@@ -17,6 +19,7 @@ public class StudentController : ControllerBase
     {
         var student = await studentServiceI.AddNewStudent(studentRequestDTO);
 
+        logger.LogInformation($"Student created with ID: {student.Id}");
         return StatusCode(201, $"Student is created with id - {student.Id}");
     }
 
@@ -24,6 +27,7 @@ public class StudentController : ControllerBase
     public async Task<IActionResult> GetAllStudents()
     {
         var students = await studentServiceI.GetAllStudents();
+        logger.LogInformation($"Retrieved {students.Count} students.");
         return Ok(students);
     }
 
@@ -31,6 +35,7 @@ public class StudentController : ControllerBase
     public async Task<IActionResult> UpdateStudent(Guid id, [FromBody] StudentUpdateDTO studentUpdateDTO)
     {
         var student = await studentServiceI.UpdateStudent(id, studentUpdateDTO);
+        logger.LogInformation($"Student updated with ID: {id}");
         return Ok(student);
     }
 
@@ -38,6 +43,7 @@ public class StudentController : ControllerBase
     public async Task<IActionResult> DeleteStudent(Guid id)
     {
         var message = await studentServiceI.DeleteStudent(id);
+        logger.LogInformation($"Student deleted with ID: {id}");
         return Ok(message);
     }
 }

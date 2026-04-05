@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudentManagementAPIZestIndia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5358910dc13b63f9c79de9a9e3eb899cad77b4dc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9828fc3329d9ef73e0d34832e629ba7402d61890")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentManagementAPIZestIndia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentManagementAPIZestIndia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

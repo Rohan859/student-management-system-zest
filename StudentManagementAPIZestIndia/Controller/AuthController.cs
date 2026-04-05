@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -12,6 +13,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
+    [SwaggerOperation(Summary = "User login", Description = "Authenticates a user and returns a JWT token.")]
     public IActionResult Login(string username, string password)
     {
         if (username == "admin" && password == "password")

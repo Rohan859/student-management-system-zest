@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 [Authorize]
 [ApiController]
@@ -17,6 +18,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(Summary = "Add a new student", Description = "Creates a new student record in the system.")]
     public async Task<IActionResult> AddNewStudent([FromBody] StudentRequestDTO studentRequestDTO)
     {
         var student = await studentServiceI.AddNewStudent(studentRequestDTO);
@@ -26,6 +28,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(Summary = "Get all students", Description = "Retrieves a list of all students in the system.")]
     public async Task<IActionResult> GetAllStudents()
     {
         var students = await studentServiceI.GetAllStudents();
@@ -34,6 +37,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpPatch("{id}")]
+    [SwaggerOperation(Summary = "Update a student", Description = "Updates an existing student record in the system.")]
     public async Task<IActionResult> UpdateStudent(Guid id, [FromBody] StudentUpdateDTO studentUpdateDTO)
     {
         var student = await studentServiceI.UpdateStudent(id, studentUpdateDTO);
@@ -42,6 +46,7 @@ public class StudentController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation(Summary = "Delete a student", Description = "Deletes an existing student record from the system.")]
     public async Task<IActionResult> DeleteStudent(Guid id)
     {
         var message = await studentServiceI.DeleteStudent(id);

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,24 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = jwtSettings["Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
+});
+
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.EnableAnnotations(); 
+    
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Student Management API",
+        Description = "This API allows you to manage students. You can create, update, delete, and retrieve student records.",
+        Contact = new OpenApiContact
+        {
+            Name = "Rohan Kundu",
+            Email = "rohan@email.com"
+        }
+    });
+
 });
 
 builder.Services.AddEndpointsApiExplorer();

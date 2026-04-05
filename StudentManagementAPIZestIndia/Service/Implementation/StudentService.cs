@@ -33,7 +33,7 @@ public class StudentService : StudentServiceI
 
         return addedStudent;
     }
-    
+
     public async Task<List<Student>> GetAllStudents()
     {
         List<Student> students = await studentRepositoryI.GetAllStudents();
@@ -62,4 +62,17 @@ public class StudentService : StudentServiceI
 
         return $"Student with id {id} updated successfully.";
     }
+
+     public async Task<String> DeleteStudent(Guid id)
+    {
+        bool isDeleted = await studentRepositoryI.DeleteStudent(id);
+
+        if(!isDeleted)
+        {
+            throw new KeyNotFoundException($"Student with id {id} not found.");
+        }
+
+        return $"Student with id {id} deleted successfully.";
+    }
+    
 }

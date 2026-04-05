@@ -33,4 +33,11 @@ public class StudentController : ControllerBase
         var student = await studentServiceI.UpdateStudent(id, studentUpdateDTO);
         return Ok(student);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteStudent(Guid id)
+    {
+        var message = await studentServiceI.DeleteStudent(id);
+        return Ok(message);
+    }
 }

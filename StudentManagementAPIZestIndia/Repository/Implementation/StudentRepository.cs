@@ -46,4 +46,19 @@ public class StudentRepository : StudentRepositoryI
 
         return student;
     }
+
+    public async Task<bool> DeleteStudent(Guid id)
+    {
+        var student = await _context.Students.FindAsync(id);
+
+        if (student == null)
+        {
+            return false;
+        }
+
+        _context.Students.Remove(student);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
 }

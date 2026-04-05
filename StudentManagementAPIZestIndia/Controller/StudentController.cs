@@ -26,4 +26,11 @@ public class StudentController : ControllerBase
         var students = await studentServiceI.GetAllStudents();
         return Ok(students);
     }
+
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateStudent(Guid id, [FromBody] StudentUpdateDTO studentUpdateDTO)
+    {
+        var student = await studentServiceI.UpdateStudent(id, studentUpdateDTO);
+        return Ok(student);
+    }
 }

@@ -21,4 +21,29 @@ public class StudentRepository : StudentRepositoryI
     {
         return _context.Students.ToList();
     }
+
+    public async Task<Student?> UpdateStudent(Guid id, StudentUpdateDTO dto)
+    {
+        var student = await _context.Students.FindAsync(id);
+
+        if (student == null)
+        {
+            return null;
+        }
+
+        // Update only provided fields
+        if (!string.IsNullOrEmpty(dto.Email))
+            {
+               student.Email = dto.Email;
+            }
+
+        if (!string.IsNullOrEmpty(dto.Course))
+           { 
+              student.Course = dto.Course;
+           }
+
+        await _context.SaveChangesAsync();
+
+        return student;
+    }
 }

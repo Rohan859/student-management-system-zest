@@ -45,4 +45,21 @@ public class StudentService : StudentServiceI
 
         return students;
     }
+
+    public async Task<string> UpdateStudent(Guid id, StudentUpdateDTO studentUpdateDTO)
+    {
+        if (studentUpdateDTO == null)
+        {
+            throw new ArgumentException("Invalid student update data.");
+        }
+
+        var updatedStudent = await studentRepositoryI.UpdateStudent(id, studentUpdateDTO);
+
+        if (updatedStudent == null)
+        {
+            throw new KeyNotFoundException($"Student with id {id} not found.");
+        }
+
+        return $"Student with id {id} updated successfully.";
+    }
 }
